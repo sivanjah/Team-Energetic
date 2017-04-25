@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hands_adult_child_care_tenderness_49129_1920x1080"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:text="Baby Care"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/textView"
+        android:textSize="36dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:text="-------------------------SignUp-------------------------"
+        android:fontFamily="sans-serif-condensed"
+        android:id="@+id/textView1"
+        android:textSize="18dp"/>
+
+    <EditText
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="10dp"
+        android:hint="userName"
+        android:ems="10"
+        android:id="@+id/editText3" />
+
+    <EditText
+        android:layout_width="261dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="10dp"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText5" />
+
+    <EditText
+        android:layout_width="262dp"
+        android:layout_marginLeft="45dp"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText6" />
+
+    <EditText
+        android:layout_width="261dp"
+        android:layout_marginLeft="45dp"
+        android:layout_height="wrap_content"
+        android:hint="confirmpassword"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText7" />
+
+    <Button
+        android:backgroundTintMode="screen"
+        android:text="SignUp"
+        android:layout_marginLeft="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_width="140dp"
+        android:onClick="gotoLogin"
+        android:id="@+id/signBtn" />
+
+    <Button
+        android:backgroundTintMode="screen"
+        android:text="Cancel"
+        android:layout_width="140dp"
+        android:layout_marginTop="-49dp"
+        android:layout_marginLeft="20dp"
+        android:onClick="gotoLogin"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelbtn" />
+
+</LinearLayout>
