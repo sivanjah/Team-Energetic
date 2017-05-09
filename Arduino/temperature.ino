@@ -1,34 +1,49 @@
-#include "U8glib.h"            // U8glib library for the OLED
-#include <Wire.h>              // Wire library for I2C communication
-#include <Adafruit_MLX90614.h> // MLX90614 library from Adafruit
+#include <LiquidCrystal.h>
+#include <Wire.h>
+#include <Adafruit_MLX90614.h>
 
 Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
-U8GLIB_SH1106_128X64 u8g(13, 11, 10, 9, 8); // D0=13, D1=11, CS=10, DC=9, Reset=8
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+int value;
 
-void draw(void) 
-{
-  u8g.setFont(u8g_font_profont15r);        // select font
-  u8g.drawStr(1, 12, "Object Temperature");// 
-  u8g.setFont(u8g_font_profont29r);        // select font for temperature readings
-  u8g.println("C");                        // prints C for Celsius
-  u8g.setPrintPos(35, 45);                 // set position
-  u8g.println(mlx.readObjectTempC(), 0);   // display temperature from MLX90614
-}
-
-void setup(void) 
-{
-    mlx.begin();  //Receive data from the sensor
-}
-
-void loop(void) 
-{
-  u8g.firstPage();  
-  do 
-    {
-     draw();      
-    }
-  while( u8g.nextPage() );
+void setup() {
+ 
+  lcd.begin(16, 2);
+  Serial.begin(9600);
+  pinMode(10, INPUT); // Setup for leads off detection LO +
+  pinMode(9, INPUT); // Setup for leads off detection LO -
+  mlx.begin(); 
   
-  delay(1000);  // Delay of 1sec 
+}
+
+void loop() {
+  
+  Serial.print("Object Temp = "); Serial.print(mlx.readObjectTempC()); Serial.println("*C");
+  
+
+  lcd.setCursor(0, 1);
+  lcd.print("Temp");
+  lcd.setCursor(8, 1);
+  lcd.print(mlx.readObjectTempC());
+  
+  if((digitalRead(10) == 1)||(digitalRead(9) == 1))
+  {
+    Serial.println('Pls Connect');
+    lcd.setCursor(0, 0);
+      lcd.print("Pls Connect");
+     
+  }
+  else{
+    // send the value of analog input 0:
+      value=analogRead(A0);
+      Serial.println(value);
+      lcd.setCursor(0, 0);
+      lcd.print("Pulse");
+      lcd.setCursor(8, 0);
+      lcd.print(value);
+      
+  }
+  //Wait for a bit to keep serial data from saturating
+ delay(1000);
 }
